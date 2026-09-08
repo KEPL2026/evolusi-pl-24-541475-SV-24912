@@ -1,7 +1,7 @@
 <laravel-boost-guidelines>
-# Laravel Application
+# KEPL Planner Monorepo
 
-This repository contains a Laravel application. Complete the following setup before working on the user's request.
+The Laravel application lives in `backend/`; the TanStack Start application lives in `frontend/`. Complete the following setup before working on backend requests.
 
 ## Prerequisites
 
@@ -38,7 +38,8 @@ After installation, ask the user to restart their terminal. If the agent needs t
 
 Install Laravel Boost from the application root before making application changes:
 
-```sh
+```powershell
+cd backend
 composer require laravel/boost --dev
 php artisan boost:install
 ```

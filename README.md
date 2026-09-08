@@ -1,24 +1,44 @@
 # KEPL Planner
 
-Aplikasi web Laravel sederhana untuk mencatat langkah kerja berikutnya. Tugas disimpan pada session pengguna sehingga dapat langsung dicoba tanpa konfigurasi database tambahan.
+Monorepo task planner dengan TanStack Start React sebagai frontend dan Laravel sebagai backend API. Task disimpan pada session Laravel sehingga belum membutuhkan tabel task tambahan.
+
+## Struktur
+
+```text
+frontend/   TanStack Start, React, TanStack Router, GSAP
+backend/    Laravel API, session, validation, dan PHPUnit
+```
 
 ## Menjalankan aplikasi
 
-```bash
+Terminal 1, backend:
+
+```powershell
+cd backend
 composer install
-cp .env.example .env
+copy .env.example .env
 php artisan key:generate
-php artisan serve
+php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-Buka `http://localhost:8000`, lalu tambahkan tugas melalui form pada halaman utama.
+Terminal 2, frontend:
+
+```powershell
+cd frontend
+npm install
+npm run dev -- --host 127.0.0.1
+```
+
+Buka `http://127.0.0.1:3000`. Frontend memanggil `http://127.0.0.1:8000/api/tasks` dengan session Laravel dan credentialed CORS.
 
 ## Pemeriksaan kualitas
 
-```bash
+```powershell
+cd backend
 php artisan test
-npm install
+
+cd ..\frontend
 npm run build
 ```
 
-Workflow GitHub Actions menjalankan pemeriksaan Laravel dan build frontend pada setiap push serta pull request ke `main` atau `dev`.
+CI menjalankan test backend dan build frontend pada setiap push serta pull request ke `main` atau `dev`.
